@@ -1,0 +1,76 @@
+---
+import { PLAYERS } from "../const/players";
+
+---
+
+
+<section class="my-60">
+    <h3 class="text-4xl md:text-6xl font-semibold text-center my-5">Elige tu jugador</h3>
+    <div class="flex flex-col justify-center items-center gap-8 mt-10">
+      <article class="flex-flex-col justify-center items-center">
+        <header class="flex flex-col items-center justify-center">
+            <img 
+              src="/img/jugadores/camilo.varon.webp" 
+              alt="Fotografia del jugador" 
+              class="player-photo w-96 h-auto"
+              
+            />
+            <h4 class="player-title text-3xl text-green md:text-5xl text-center font-extrabold -mt-10 -rotate-6">Camilo Varon</h4>
+            <img src="/img/pais/Colombia.svg" alt="Bandera de Colombia" class="player-country w-14 mt-6" />
+        </header>
+          
+          <footer >
+            <div class="flex flex-row justify-between items-center gap-8 mt-4">
+              <h4 class="player-position">Posición: Shortstop</h4>
+              <h4 class="player-age">Edad: 34 Años</h4>
+          </div>
+        </footer>
+      </article>
+
+      <aside class="mt-5 flex flex-row flex-wrap justify-evenly gap-5">
+        {
+          PLAYERS.map(({ id, nombre, apellido, edad, posicion, pais }) => (
+            <spam
+              // href={`/jugadores/${id}`}              
+              title={`Visita la página del jugador ${nombre}`}
+              class="player-link flex group relative justify-center items-center bg-gradient-to-b from-white/10 via-transparent to-transparent px-2 md:px-14"
+              data-player-id={id}
+              data-player-name={`${nombre} ${apellido}`}
+              data-player-age={edad}
+              data-player-country={pais}
+              data-player-position={posicion} 
+            >
+              <img
+                loading="lazy"
+                src={`/img/jugadores/${id}.webp`}
+                alt={`Foto en pequeño del jugador ${id}-small`}
+                class="player-image w-20 md:w-28 -mt-5 px-4 h-auto transition group-hover:scale-105"
+              />
+            </spam>
+          ))
+        }
+      </aside>
+      
+      </div>
+</section>
+
+<script>
+  const playerLinks = document.querySelectorAll('.player-link');
+  const playerTitle = document.querySelector('.player-title') as HTMLHeadingElement;
+  const playerPhoto = document.querySelector('.player-photo') as HTMLImageElement;
+  const playerCountry = document.querySelector('.player-country') as HTMLImageElement;
+  const playerPosition = document.querySelector('.player-position') as HTMLImageElement;
+  const playerAge = document.querySelector('.player-age') as HTMLImageElement;
+
+  playerLinks.forEach((link) => {
+    link.addEventListener("click", () => {
+      playerTitle.textContent = link.dataset.playerName;
+      playerPhoto.src = `/img/jugadores/${link.dataset.playerId}.webp`;
+      playerCountry.src = `/img/pais/${link.dataset.playerCountry}.svg`;
+      playerPosition.textContent = `Posición: ${link.dataset.playerPosition}`;
+      playerAge.textContent = ` Edad: ${link.dataset.playerAge} Años`;
+    });
+
+  })
+
+</script>

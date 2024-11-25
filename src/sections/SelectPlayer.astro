@@ -1,76 +1,89 @@
 ---
+import { placements } from "astro/runtime/client/dev-toolbar/ui-library/window.js";
 import { PLAYERS } from "../const/players";
-
 ---
 
-
 <section class="my-60">
-    <h3 class="text-4xl md:text-6xl font-semibold text-center my-5">Elige tu jugador</h3>
-    <div class="flex flex-col justify-center items-center gap-8 mt-10">
-      <article class="flex-flex-col justify-center items-center">
-        <header class="flex flex-col items-center justify-center">
-            <img 
-              src="/img/jugadores/camilo.varon.webp" 
-              alt="Fotografia del jugador" 
-              class="player-photo w-96 h-auto"
-              
-            />
-            <h4 class="player-title text-3xl text-green md:text-5xl text-center font-extrabold -mt-10 -rotate-6">Camilo Varon</h4>
-            <img src="/img/pais/Colombia.svg" alt="Bandera de Colombia" class="player-country w-14 mt-6" />
-        </header>
-          
-          <footer >
-            <div class="flex flex-row justify-between items-center gap-8 mt-4">
-              <h4 class="player-position">Posición: Shortstop</h4>
-              <h4 class="player-age">Edad: 34 Años</h4>
-          </div>
-        </footer>
-      </article>
+  <h3 class="text-4xl md:text-6xl font-semibold text-center my-5 text-green">
+    Elige tu jugador
+  </h3>
+  <div class="flex flex-col justify-center items-center gap-8 mt-10">
+    <article class="player" id="camilo-varon">
+      <header class="flex flex-col items-center justify-center">
+        <img
+          src={`/img/jugadores/${PLAYERS[0].id}.webp`  }
+          alt="Fotografia del jugador"
+          class="player-photo w-96 h-auto"
+          style="mask-image: linear-gradient(to bottom, black 80%, transparent 100%);"
+        />
+        <h4
+          class="player-title text-3xl text-green md:text-5xl text-center font-extrabold -mt-10 -rotate-6"
+        >
+          {PLAYERS[0].nombre} {PLAYERS[0].apellido}
+        </h4>
+        <img
+          src={`/img/pais/${PLAYERS[0].pais}.svg`}
+          alt={`Bandera de ${PLAYERS[0].pais}`}
+          class="player-country w-14 mt-6"
+        />
+      </header>
 
-      <aside class="mt-5 flex flex-row flex-wrap justify-evenly gap-5">
-        {
-          PLAYERS.map(({ id, nombre, apellido, edad, posicion, pais }) => (
-            <spam
-              // href={`/jugadores/${id}`}              
-              title={`Visita la página del jugador ${nombre}`}
-              class="player-link flex group relative justify-center items-center bg-gradient-to-b from-white/10 via-transparent to-transparent px-2 md:px-14"
-              data-player-id={id}
-              data-player-name={`${nombre} ${apellido}`}
-              data-player-age={edad}
-              data-player-country={pais}
-              data-player-position={posicion} 
-            >
-              <img
-                loading="lazy"
-                src={`/img/jugadores/${id}.webp`}
-                alt={`Foto en pequeño del jugador ${id}-small`}
-                class="player-image w-20 md:w-28 -mt-5 px-4 h-auto transition group-hover:scale-105"
-              />
-            </spam>
-          ))
-        }
-      </aside>
-      
-      </div>
+      <footer>
+        <div class="flex flex-row justify-center items-center gap-8 mt-4">
+          <a href={`/jugadores/${PLAYERS[0].id}`} class="player-id text-sm hover:scale-110 hover:text-green">Ver Perfil</a>
+        </div>
+      </footer>
+    </article>
+
+    <aside class="mt-5 flex flex-row flex-wrap justify-evenly gap-5">
+      {
+        PLAYERS.map(({ id, nombre, apellido, edad, posicion, pais }) => (
+          <span
+            class="player-link flex group relative justify-center items-center bg-gradient-to-b from-white/10 via-transparent to-transparent px-2 md:px-14"
+            data-id={id}
+            data-name={`${nombre} ${apellido}`}
+            data-age={edad}
+            data-country={pais}
+            data-position={posicion}
+          >
+            <img
+              loading="lazy"
+              src={`/img/jugadores/${id}.webp`}
+              alt={`Foto en pequeño del jugador ${id}-small`}
+              class="player-image w-20 md:w-28 -mt-5 px-4 h-auto transition group-hover:scale-110"
+              style="mask-image: linear-gradient(to bottom, black 60%, transparent 90%);"
+            />
+          </span>
+        ))
+      }
+    </aside>
+  </div>
 </section>
 
 <script>
-  const playerLinks = document.querySelectorAll('.player-link');
-  const playerTitle = document.querySelector('.player-title') as HTMLHeadingElement;
-  const playerPhoto = document.querySelector('.player-photo') as HTMLImageElement;
-  const playerCountry = document.querySelector('.player-country') as HTMLImageElement;
-  const playerPosition = document.querySelector('.player-position') as HTMLImageElement;
-  const playerAge = document.querySelector('.player-age') as HTMLImageElement;
+  // Selección de los elementos donde vamos a actualizar la información
+  const playerLinks = document.querySelectorAll(".player-link");
+  const playerTitle = document.querySelector(".player-title");
+  const playerCountry = document.querySelector(".player-country") as HTMLImageElement;
+  const playerPosition = document.querySelector(".player-position");
+  const playerAge = document.querySelector(".player-age");
+  const playerId = document.querySelector(".player-id") as HTMLAnchorElement;
+  const playerPhoto = document.querySelector(".player-photo") as HTMLImageElement;
 
-  playerLinks.forEach((link) => {
-    link.addEventListener("click", () => {
-      playerTitle.textContent = link.dataset.playerName;
-      playerPhoto.src = `/img/jugadores/${link.dataset.playerId}.webp`;
-      playerCountry.src = `/img/pais/${link.dataset.playerCountry}.svg`;
-      playerPosition.textContent = `Posición: ${link.dataset.playerPosition}`;
-      playerAge.textContent = ` Edad: ${link.dataset.playerAge} Años`;
+  // Función que se encarga de actualizar la información del jugador
+
+  playerLinks.forEach((playerLink) => {
+    playerLink.addEventListener("click", (event) => {
+      const { id, country, name, age, position } = (event.currentTarget as HTMLElement).dataset;
+
+      playerTitle.textContent = name;
+      playerCountry.src = `/img/pais/${country}.svg`;
+      // playerPosition.textContent = `Posición: ${position}`;
+      // playerAge.textContent = `Edad: ${age}`;
+      playerId.href = `/jugadores/${id}`;
+      playerPhoto.src = `/img/jugadores/${id}.webp`;
     });
+  });
 
-  })
-
+ 
 </script>

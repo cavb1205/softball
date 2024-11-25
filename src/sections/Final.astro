@@ -1,0 +1,41 @@
+---
+import Countdown from "./Countdown.astro";
+---
+
+<section class="mt-48">
+  <h2 class="text-6xl text-center">Gran final</h2>
+  <div class="mt-6">
+    <div class="flex flex-col md:flex-row items-center justify-center gap-x-5">
+      <img
+        src="/img/equipos/logo-angeles.webp"
+        alt="equipo angeles calama"
+        class="w-60 h-40 rounded-lg hover:scale-110"
+      />
+      <span class="text-4xl">vs</span>
+      <img
+        src="/img/equipos/logo-barinas.webp"
+        alt="equipo barinas calama"
+        class="w-60 h-40 rounded-lg hover:scale-110"
+      />
+    </div>
+    <div class="flex flex-col gap-4 items-center justify-center mb-5">
+      <span>ver juego</span>
+      <a
+        href="https://www.twitch.tv/camilovaron1205"
+        target="_blank"
+        class="ml-2"
+      >
+        <img
+          src="/img/icons/twitch.svg"
+          alt="play icon twitch"
+          class="w-16 h-16 hover:scale-110 hover:opacity-75"
+        />
+      </a>
+    </div>
+
+    <Countdown TIMESTAMP={1733070600} />
+  </div>
+  <!-- <h3 class="text-2xl text-center">
+    Juego para disputar tercer y cuarto lugar
+  </h3> -->
+</section>

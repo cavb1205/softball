@@ -1,6 +1,6 @@
 export const PLAYERS = [
     {
-        id: "camilo.varon",
+        id: "camilo-varon",
         nombre: "Camilo",
         apellido: "Varon",
         edad: 34,
@@ -8,7 +8,7 @@ export const PLAYERS = [
         posicion: "Shortstop",
     },
     {
-        id: "wladimir.pulido",
+        id: "wladimir-pulido",
         nombre: "Wladimir",
         apellido: "Pulido",
         edad: 25,
@@ -16,7 +16,7 @@ export const PLAYERS = [
         posicion: "Centerfield",
     },
     {
-        id: "albert.arias",
+        id: "albert-arias",
         nombre: "Albert",
         apellido: "Arias",
         edad: 30,
@@ -24,7 +24,7 @@ export const PLAYERS = [
         posicion: "shortstop",
     },
     {
-        id: "luis.pulido.jr",
+        id: "luis-pulido-jr",
         nombre: "Luis",
         apellido: "pulido Jr",
         edad: 34,
@@ -32,7 +32,7 @@ export const PLAYERS = [
         posicion: "3b",
     },
     {
-        id: "luis.pulido",   
+        id: "luis-pulido",   
         nombre: "Luis",
         apellido: "Pulido Sr",
         edad: 50,
@@ -40,7 +40,7 @@ export const PLAYERS = [
         posicion: "Manager",
     },
     {
-        id: "felix.bruno",
+        id: "felix-bruno",
         nombre: "Felix",
         apellido: "Bruno",
         edad: 38,
@@ -48,7 +48,7 @@ export const PLAYERS = [
         posicion: "Pitcher",
     },
     {
-        id: "camilo.varon",
+        id: "camilo-varon",
         nombre: "Luis",
         apellido: "Gonzalez",
         edad: 22,
@@ -56,7 +56,7 @@ export const PLAYERS = [
         posicion: "Catcher",
     },
     {
-        id: "camilo.varon",
+        id: "camilo-varon",
         nombre: "Luis",
         apellido: "Gonzalez",
         edad: 22,
@@ -64,7 +64,7 @@ export const PLAYERS = [
         posicion: "Catcher",
     },
     {
-        id: "camilo.varon",
+        id: "camilo-varon",
         nombre: "Luis",
         apellido: "Gonzalez",
         edad: 22,
@@ -72,7 +72,7 @@ export const PLAYERS = [
         posicion: "Catcher",
     },
     {
-        id: "camilo.varon",
+        id: "camilo-varon",
         nombre: "Luis",
         apellido: "Gonzalez",
         edad: 22,

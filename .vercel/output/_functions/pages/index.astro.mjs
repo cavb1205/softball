@@ -1,5 +1,5 @@
 /* empty css                                 */
-import { c as createComponent, r as renderTemplate, a as renderHead, b as renderSlot, e as createAstro, m as maybeRenderHead, f as addAttribute, g as renderComponent } from '../chunks/astro/server_M2DTcTcp.mjs';
+import { c as createComponent, r as renderTemplate, a as renderHead, b as renderSlot, e as createAstro, m as maybeRenderHead, f as addAttribute, g as renderScript, h as renderComponent } from '../chunks/astro/server_lNyOO_E4.mjs';
 import 'kleur/colors';
 import 'clsx';
 export { renderers } from '../renderers.mjs';
@@ -36,7 +36,7 @@ const $$Footer = createComponent(($$result, $$props, $$slots) => {
 }, "/Users/camilo/Documents/dev/softball/src/sections/Footer.astro", void 0);
 
 const $$TableResult = createComponent(async ($$result, $$props, $$slots) => {
-  const API_URL = "https://opensheet.elk.sh/10jk4Ll4hjaFLZX1G7G3NO0WtgC5VXJENpg0clGz65ws";
+  const API_URL = process.env.API_URL;
   const response = await fetch(`${API_URL}/Final`).then((res) => res.json());
   return renderTemplate`${maybeRenderHead()}<h1 class="text-2xl font-semibold my-8 text-center">Resultados de los Juegos</h1> <div class=" overflow-x-auto"> <table class="table-auto border-collapse border border-gray-300 w-full"> <thead> <tr> <th class="border px-4 py-2">Equipo</th> <th class="border px-4 py-2">1er Inning</th> <th class="border px-4 py-2">2do Inning</th> <th class="border px-4 py-2">3er Inning</th> <th class="border px-4 py-2">4to Inning</th> <th class="border px-4 py-2">5to Inning</th> <th class="border px-4 py-2">6to Inning</th> <th class="border px-4 py-2">7mo Inning</th> <th class="border px-4 py-2">Total</th> </tr> </thead> <tbody> ${response.map((equipo, index) => renderTemplate`<tr${addAttribute(index, "data-key")}> <td class="border px-4 py-2 ">${equipo.equipo}</td> <td class="border px-4 py-2">${equipo.primer}</td> <td class="border px-4 py-2">${equipo.segundo}</td> <td class="border px-4 py-2">${equipo.tercero}</td> <td class="border px-4 py-2">${equipo.cuarto}</td> <td class="border px-4 py-2">${equipo.quinto}</td> <td class="border px-4 py-2">${equipo.sexto}</td> <td class="border px-4 py-2">${equipo.septimo}</td> <td class="border px-4 py-2 text-red-500">${equipo.total}</td> </tr>`)} </tbody> </table> </div>`;
 }, "/Users/camilo/Documents/dev/softball/src/components/TableResult.astro", void 0);
@@ -46,11 +46,11 @@ const $$Countdown = createComponent(($$result, $$props, $$slots) => {
   const Astro2 = $$result.createAstro($$Astro, $$props, $$slots);
   Astro2.self = $$Countdown;
   const { primeraHora } = Astro2.props;
-  return renderTemplate`${maybeRenderHead()}<section class="flex flex-col items-center justify-center p-4"> <!-- <LaVeladaLogo class="text-primary" /> --> <div${addAttribute(primeraHora, "data-date")} class="flex md:flex-row flex-col gap-x-2 text-green font-semibold my-3 uppercase gap-y-5"> <div class="flex md:flex-col gap-x-4 justify-center items-center gap-y-3"> <span class="text-lg tabular-nums" data-days>00</span> <span>Días</span> </div> <span class="hidden md:block md:text-xl mt-1">:</span> <div class="flex md:flex-col gap-x-4 justify-center items-center gap-y-3"> <span class="text-lg tabular-nums" data-hours>00</span> <span>Horas</span> </div> <span class="hidden md:block md:text-xl mt-1">:</span> <div class="flex md:flex-col gap-x-4 justify-center items-center gap-y-3"> <span class="text-lg tabular-nums" data-minutes>00</span> <span>Minutos</span> </div> <span class="hidden md:block md:text-xl mt-1">:</span> <div class="flex md:flex-col gap-x-4 justify-center items-center gap-y-3"> <span class="text-lg tabular-nums" data-seconds>00</span> <span>Segundos</span> </div> </div> </section> `;
+  return renderTemplate`${maybeRenderHead()}<section class="flex flex-col items-center justify-center p-4"> <!-- <LaVeladaLogo class="text-primary" /> --> <div${addAttribute(primeraHora, "data-date")} class="flex md:flex-row flex-col gap-x-2 text-green font-semibold my-3 uppercase gap-y-5"> <div class="flex md:flex-col gap-x-4 justify-center items-center gap-y-3"> <span class="text-lg tabular-nums" data-days>00</span> <span>Días</span> </div> <span class="hidden md:block md:text-xl mt-1">:</span> <div class="flex md:flex-col gap-x-4 justify-center items-center gap-y-3"> <span class="text-lg tabular-nums" data-hours>00</span> <span>Horas</span> </div> <span class="hidden md:block md:text-xl mt-1">:</span> <div class="flex md:flex-col gap-x-4 justify-center items-center gap-y-3"> <span class="text-lg tabular-nums" data-minutes>00</span> <span>Minutos</span> </div> <span class="hidden md:block md:text-xl mt-1">:</span> <div class="flex md:flex-col gap-x-4 justify-center items-center gap-y-3"> <span class="text-lg tabular-nums" data-seconds>00</span> <span>Segundos</span> </div> </div> </section> ${renderScript($$result, "/Users/camilo/Documents/dev/softball/src/sections/Countdown.astro?astro&type=script&index=0&lang.ts")}`;
 }, "/Users/camilo/Documents/dev/softball/src/sections/Countdown.astro", void 0);
 
 const $$Final = createComponent(async ($$result, $$props, $$slots) => {
-  const API_URL = "https://opensheet.elk.sh/10jk4Ll4hjaFLZX1G7G3NO0WtgC5VXJENpg0clGz65ws";
+  const API_URL = process.env.API_URL;
   const status = await fetch(`${API_URL}/Estado`).then((res) => res.json());
   const response = await fetch(`${API_URL}/Final`).then((res) => res.json());
   const angeles = response[0].total;

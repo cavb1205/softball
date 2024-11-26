@@ -1,0 +1,38 @@
+---
+const API_URL = import.meta.env.API_URL;
+const response = await fetch(`${API_URL}/Final`).then((res) => res.json());
+---
+
+<h1 class="text-2xl font-semibold my-8 text-center">Resultados de los Juegos</h1>
+<div class=" overflow-x-auto">
+    <table class="table-auto border-collapse border border-gray-300 w-full">
+      <thead>
+        <tr>
+          <th class="border px-4 py-2">Equipo</th>
+          <th class="border px-4 py-2">1er Inning</th>
+          <th class="border px-4 py-2">2do Inning</th>
+          <th class="border px-4 py-2">3er Inning</th>
+          <th class="border px-4 py-2">4to Inning</th>
+          <th class="border px-4 py-2">5to Inning</th>
+          <th class="border px-4 py-2">6to Inning</th>
+          <th class="border px-4 py-2">7mo Inning</th>
+          <th class="border px-4 py-2">Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        {response.map((equipo, index) => (
+          <tr data-key={index}>
+            <td class="border px-4 py-2 ">{equipo.equipo}</td>
+            <td class="border px-4 py-2">{equipo.primer}</td>
+            <td class="border px-4 py-2">{equipo.segundo}</td>
+            <td class="border px-4 py-2">{equipo.tercero}</td>
+            <td class="border px-4 py-2">{equipo.cuarto}</td>
+            <td class="border px-4 py-2">{equipo.quinto}</td>
+            <td class="border px-4 py-2">{equipo.sexto}</td>
+            <td class="border px-4 py-2">{equipo.septimo}</td>
+            <td class="border px-4 py-2 text-red-500">{equipo.total}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+</div>

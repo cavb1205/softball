@@ -1,29 +1,29 @@
 ---
-const { TIMESTAMP, end } = Astro.props;
+const { primeraHora } = Astro.props;
 ---
 
 <section class="flex flex-col items-center justify-center p-4">
   <!-- <LaVeladaLogo class="text-primary" /> -->
   <div
-    data-date={TIMESTAMP}
-    class="flex md:flex-row gap-x-2 text-green font-semibold my-3 uppercase"
+    data-date={primeraHora}
+    class="flex md:flex-row flex-col gap-x-2 text-green font-semibold my-3 uppercase gap-y-5"
   >
-    <div class="flex flex-col justify-center items-center gap-y-3">
+    <div class="flex md:flex-col gap-x-4 justify-center items-center gap-y-3">
       <span class="text-lg tabular-nums" data-days>00</span>
       <span>Días</span>
     </div>
-    <span class="text-xl mt-1">:</span>
-    <div class="flex flex-col justify-center items-center gap-y-3">
+    <span class="hidden md:block md:text-xl mt-1">:</span>
+    <div class="flex md:flex-col gap-x-4 justify-center items-center gap-y-3">
       <span class="text-lg tabular-nums" data-hours>00</span>
       <span>Horas</span>
     </div>
-    <span class="text-xl mt-1">:</span>
-    <div class="flex flex-col justify-center items-center gap-y-3">
+    <span class="hidden md:block md:text-xl mt-1">:</span>
+    <div class="flex md:flex-col gap-x-4 justify-center items-center gap-y-3">
       <span class="text-lg tabular-nums" data-minutes>00</span>
       <span>Minutos</span>
     </div>
-    <span class="text-xl mt-1">:</span>
-    <div class="flex flex-col justify-center items-center gap-y-3">
+    <span class="hidden md:block md:text-xl mt-1">:</span>
+    <div class="flex md:flex-col gap-x-4 justify-center items-center gap-y-3">
       <span class="text-lg tabular-nums" data-seconds>00</span>
       <span>Segundos</span>
     </div>

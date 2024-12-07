@@ -1,0 +1,57 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { JUEGOS } from "../../const/juegos";
+import WatchGame from "../../components/WatchGame.astro";
+import TableResult from "../../components/TableResult.astro";
+import Sponsors from "../../sections/Sponsors.astro";
+
+
+const { id } = Astro.params;
+const juego = JUEGOS.find((jornada) =>
+  jornada.juegos.some((juego) => juego.id === id)
+)?.juegos.find((juego) => juego.id === id);
+
+const { equipo1, equipo2, hora } = juego;
+---
+
+<Layout title={id}>
+  <main class="">
+    <div>
+      <h1 class="text-green text-center text-3xl md:text-6xl my-10 -rotate-3" transition:name={`title-${id}`}>
+        {equipo1}
+        <span class="text-xl text-white">vs</span>
+        {equipo2}
+      </h1>
+      <div class="flex flex-col items-center gap-2">
+        <span class="text-md">Hora del Juego</span>
+        <span class="text-green text-2xl md:text-4xl">{hora}</span>
+      </div>
+      <div
+        class="flex flex-row gap-4 items-center justify-center my-5 py-20 bg-cover md:bg-center bg-no-repeat"
+        style="background-image: url('/img/bg/campo.webp') "
+        
+      >
+        <a href={`/equipos/${equipo1}`}>
+          <img
+            style="mask-image: linear-gradient(black 70%, transparent 100%);"
+            src={`/img/equipos/${equipo1}.webp`}
+            alt={`logo del equipo ${equipo1}`}
+            class="w-28 h-28 md:w-60 md:h-60 object-cover rounded-full shadow-white transition-transform duration-300 ease-in-out transform hover:scale-105 hover:opacity-75"
+          />
+        </a>
+        <span class="text-4xl md:text-6xl text-green rotate-12">vs</span>
+        <a href={`/equipos/${equipo2}`}>
+          <img 
+            style="mask-image: linear-gradient(black 75%, transparent 100%);"
+            src={`/img/equipos/${equipo2}.webp`}
+            alt={`logo del equipo ${equipo2}`}
+            class="w-28 h-28 md:w-60 md:h-60 object-cover rounded-full shadow-white transition-transform duration-300 ease-in-out transform hover:scale-105 hover:opacity-75"
+          />
+        </a>
+      </div>
+      <WatchGame />
+      <TableResult equipo1={equipo1} equipo2={equipo2}/>
+    </div>
+    <Sponsors />
+  </main>
+</Layout>

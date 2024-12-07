@@ -1,0 +1,12 @@
+---
+const { equipo } = Astro.params;
+import Layout from "../../layouts/Layout.astro";
+import SelectPlayer from "../../sections/SelectPlayer.astro";
+---
+
+<Layout title={`Softball-${equipo}`}>
+  <main>
+    <h1 class="text-6xl md:text-8xl text-center text-green">{equipo}</h1>
+    <SelectPlayer equipo={equipo} />
+  </main>
+</Layout>

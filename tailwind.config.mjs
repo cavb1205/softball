@@ -5,6 +5,7 @@ export default {
 		extend: {
 			fontFamily: {
 				'rock': ['Rock Salt', 'cursive'],
+				'roboto': ['Roboto', 'sans-serif'],
 			},
 			colors: {
 				'primary': '#333',

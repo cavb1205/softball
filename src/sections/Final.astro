@@ -5,8 +5,6 @@ import Countdown from "./Countdown.astro";
 const API_URL = import.meta.env.API_URL;
 const status = await fetch(`${API_URL}/Estado`).then((res) => res.json());
 
-
-
 const response = await fetch(`${API_URL}/Final`).then((res) => res.json());
 const angeles = response[0].total;
 const barinas = response[1].total;
@@ -21,16 +19,19 @@ const phillies = response[3].total;
       class="flex md:flex-row items-center justify-center gap-x-5 sm:gap-y-5"
     >
       <div class="flex flex-col justify-center items-center gap-y-5">
-        <img
-          src="/img/equipos/angeles.webp"
-          alt="equipo angeles calama"
-          class="w-40 md:w-60 h-30 md:h-60 rounded-full hover:scale-110"
-        />
+        <a href={`/equipos/${response[0].equipo}`}>
+          <img
+            src="/img/equipos/angeles.webp"
+            alt="equipo angeles calama"
+            class="w-40 md:w-60 h-30 md:h-60 rounded-full hover:scale-110"
+          />
+        </a>
         {
-            status[0].estado === "offline"? <span></span>
-            : 
-
+          status[0].estado === "offline" ? (
+            <span />
+          ) : (
             <span class="text-xl md:text-3xl">{angeles}</span>
+          )
         }
       </div>
       <span class="text-2xl">vs</span>
@@ -42,10 +43,11 @@ const phillies = response[3].total;
           class="w-40 md:w-60 h-30 md:h-60 rounded-full hover:scale-110"
         />
         {
-            status[0].estado === "offline"? <span></span>
-            : 
-
+          status[0].estado === "offline" ? (
+            <span />
+          ) : (
             <span class="text-xl md:text-3xl">{barinas}</span>
+          )
         }
       </div>
     </div>
@@ -67,7 +69,7 @@ const phillies = response[3].total;
     <Countdown primeraHora={1733070600} />
   </div>
   <div class="mt-10">
-    <h3 class="text-2xl md:text-4xl text-center mb-8">
+    <h3 class="text-2xl md:text-4xl text-center mb-8 font-roboto">
       Juego para disputar tercer y cuarto lugar
     </h3>
     <div
@@ -80,9 +82,11 @@ const phillies = response[3].total;
           class="w-40 md:w-60 h-30 md:h-60 rounded-full hover:scale-110"
         />
         {
-            status[0].estado === "offline"? <span></span>
-            : 
+          status[0].estado === "offline" ? (
+            <span />
+          ) : (
             <span class="text-xl md:text-3xl">{zorros}</span>
+          )
         }
       </div>
       <span class="text-2xl">vs</span>
@@ -93,18 +97,14 @@ const phillies = response[3].total;
           class="w-40 md:w-60 h-30 md:h-60 rounded-full hover:scale-110"
         />
         {
-            status[0].estado === "offline"? <span></span>
-            : 
-
+          status[0].estado === "offline" ? (
+            <span />
+          ) : (
             <span class="text-xl md:text-3xl">{phillies}</span>
+          )
         }
       </div>
     </div>
   </div>
-  {
-    status[0].estado === "offline"? <span></span>
-    :
-        <TableResult />
-
-  }
+  {status[0].estado === "offline" ? <span /> : <TableResult />}
 </section>

@@ -3,29 +3,29 @@ const { primeraHora } = Astro.props;
 ---
 
 <section class="flex flex-col items-center justify-center p-4">
-  <!-- <LaVeladaLogo class="text-primary" /> -->
+  
   <div
-    data-date={primeraHora}
+    data-date={1736690400}
     class="flex md:flex-row flex-col gap-x-2 text-green font-semibold my-3 uppercase gap-y-5"
   >
     <div class="flex md:flex-col gap-x-4 justify-center items-center gap-y-3">
       <span class="text-lg tabular-nums" data-days>00</span>
-      <span>Días</span>
+      <span class="text-white">Días</span>
     </div>
     <span class="hidden md:block md:text-xl mt-1">:</span>
     <div class="flex md:flex-col gap-x-4 justify-center items-center gap-y-3">
       <span class="text-lg tabular-nums" data-hours>00</span>
-      <span>Horas</span>
+      <span class="text-white">Horas</span>
     </div>
     <span class="hidden md:block md:text-xl mt-1">:</span>
     <div class="flex md:flex-col gap-x-4 justify-center items-center gap-y-3">
       <span class="text-lg tabular-nums" data-minutes>00</span>
-      <span>Minutos</span>
+      <span class="text-white">Minutos</span>
     </div>
     <span class="hidden md:block md:text-xl mt-1">:</span>
     <div class="flex md:flex-col gap-x-4 justify-center items-center gap-y-3">
       <span class="text-lg tabular-nums" data-seconds>00</span>
-      <span>Segundos</span>
+      <span class="text-white">Segundos</span>
     </div>
   </div>
 </section>
@@ -37,7 +37,8 @@ const { primeraHora } = Astro.props;
   const HOUR = MINUTE * 60;
   const DAY = HOUR * 24;
 
-  const end = 1733081400;
+  //cuando finaliza el contador
+  const end = 1736690400;
 
   function init() {
     const $countdown = document.querySelector("[data-date]");

@@ -1,0 +1,63 @@
+---
+import { GET_PLAYERS } from "../../const/players";
+import Layout from "../../layouts/Layout.astro";
+
+import Sponsors from "../../sections/Sponsors.astro";
+const { id } = Astro.params;
+const PLAYERS = await GET_PLAYERS();
+const player = PLAYERS.find((player) => player.id === id);
+
+---
+
+<Layout title={`Perfil de ${player.nombres}`}>
+  <a
+    data-astro-reload
+    href={`/equipos/${player.equipo}`}
+    class="hover:bg-slate-200/10 px-5 py-8 text-md"><span>Volver</span></a
+  >
+
+  <div class="flex flex-col md:flex-row justify-center items-center">
+    <div class="flex flex-col my-5">
+      <a href={`/equipos/${player.equipo}`}>
+        <img
+          src={`/img/equipos/${player.equipo}.webp`}
+          alt={`Foto del equipo ${player.equipo}`}
+          class="w-28 h-auto rounded-full hover:scale-110 hover:opacity-75"
+        />
+      </a>
+    </div>
+    <div class="flex flex-col items-center justify-center">
+      <h1
+        class="text-4xl md:text-6xl text-green -rotate-5 mb-10"
+        transition:name="player-title"
+      >
+        {player.nombres}
+        {player.apellidos}
+      </h1>
+      <img
+        transition:name="player-image"
+        src={`/img/jugadores/${player.id}.webp`}
+        alt={`Foto de ${player.nombres} ${player.apellidos}`}
+        class="w-96 h-auto"
+        style="mask-image: linear-gradient(to bottom, black 80%, transparent 100%);"
+      />
+      <img
+        src={`/img/pais/${player.nacionalidad}.svg`}
+        alt={`Bandera de ${player.nacionalidad}`}
+        class="w-20"
+      />
+    </div>
+    <div class="flex flex-col gap-3 md:gap-10">
+      <div class="text-lg md:text-2xl text-center flex flex-col gap-3 my-2">
+        <span class="text-green">Edad</span>
+        <span> {player.edad} años</span>
+      </div>
+      <div class="text-lg md:text-2xl text-center flex flex-col gap-3">
+        <span class="text-green">Posición</span>
+        <span> {player.posicion}</span>
+      </div>
+    </div>
+  </div>
+
+  <Sponsors />
+</Layout>

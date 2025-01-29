@@ -1,0 +1,32 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { EQUIPOS } from "../../const/equipos";
+import Sponsors from "../../sections/Sponsors.astro";
+
+---
+
+<Layout title="Equipos">
+    <main class="mx-10">
+        <h1 class="text-center text-4xl text-green mb-10">Equipos</h1>
+        <div class="flex flex-col md:flex-row gap-8 items-center justify-around flex-wrap">
+            {
+                EQUIPOS.map(({ id, nombre, logo }) => (
+                    <a
+                        href={`/equipos/${id}`}
+                        class=" bg-gradient-to-b from-white/10 via-transparent to-transparent p-2"
+                    >
+                        <img
+                            transition:name={`logo-${id}`}
+                            loading="lazy"
+                            src={`/img/equipos/${logo}.webp`}
+                            alt={`Logo del equipo ${nombre}`}
+                            class="w-28 md:w-40 rounded-full hover:opacity-70 hover:scale-105 transition mx-20"
+                        />
+                        
+                    </a>
+                ))
+            }
+        </div>
+        <Sponsors />
+    </main>
+</Layout>

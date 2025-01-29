@@ -13,9 +13,9 @@ const players = Astro.props.players || [];
           class="player-link w-28 h-28 object-cover rounded-full shadow-lg transition-transform duration-300 ease-in-out transform hover:scale-110 hover:opacity-100 opacity-60"
           style="mask-image: linear-gradient(to bottom, black 60%, transparent 100%);"
           data-id={player.id}
-          data-name={`${player.nombre} ${player.apellido}`}
+          data-name={`${player.nombres} ${player.apellidos}`}
           data-age={player.edad}
-          data-country={player.pais}
+          data-country={player.nacionalidad}
           data-position={player.posicion}
         />
       ))

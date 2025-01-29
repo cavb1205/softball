@@ -1,0 +1,44 @@
+---
+
+
+---
+
+<div class="relative">
+  <!-- Botón hamburguesa -->
+  <button 
+    class="hamburguer p-4 focus:outline-none hover:scale-95 md:hidden" 
+  >
+    <!-- Barras del menú hamburguesa -->
+    <span class={`block w-6 h-0.5 bg-white mb-1 transition-transform-rotate-45 -translate-y-2'`}></span>
+    <span class={`block w-6 h-0.5 bg-white mb-1 transition-transform-rotate-45 -translate-y-2'`}></span>
+    <span class={`block w-6 h-0.5 bg-white mb-1 transition-transform-rotate-45 -translate-y-2'`}></span>
+  </button>
+
+  <!-- Menú desplegable -->
+  <div class={`md:hidden absolute top-16 left-0 w-full bg-white/30 shadow-md transition-all duration-300 ease-in-out transform `}>
+    <ul class="flex flex-col space-y-2">
+        <li>
+            <a href="/" class="block p-4 hover:bg-green/5 hover:text-green hover:scale-95">Inicio</a>
+        </li>
+        <li>
+            <a href="/equipos" class="block p-4 hover:bg-green/5 hover:text-green hover:scale-95">Equipos</a>
+        </li>
+        <li>
+            <a href="/juegos" class="block p-4 hover:bg-green/5 hover:text-green hover:scale-95">Juegos</a>
+        </li>
+        <li>
+            <a href="/galeria" class="block p-4 hover:bg-green/5 hover:text-green hover:scale-95">Galería</a>
+        </li>
+        <li>
+            <a href="/contacto" class="block p-4 hover:bg-green/5 hover:text-green hover:scale-95">Contacto</a>
+        </li>
+    </ul>
+  </div>
+</div>
+<script>
+
+document.querySelector('.hamburger').addEventListener('click', () => {
+    document.querySelector('.absolute').classList.toggle('expanded');
+    
+  });
+</script>

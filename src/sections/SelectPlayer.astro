@@ -1,34 +1,45 @@
 ---
 
-import { PLAYERS } from "../const/players";
-const {equipo}=Astro.props
-const PLAYERS_FILTER = PLAYERS.filter((player) => player.equipo === equipo);
+import Carrousel from "../components/Carrousel.astro";
+import PlayerList from "../components/PlayerList.astro";
+
+
+const {equipo, jugadores}=Astro.props
+
+
+const PLAYERS_FILTER = jugadores.filter((player) => player.equipo === equipo);
+
+let MITAD = Math.floor(PLAYERS_FILTER.length / 2);
+let PLAYERS_FILTER_1 = PLAYERS_FILTER.slice(0, MITAD+1);
+let PLAYERS_FILTER_2 = PLAYERS_FILTER.slice(MITAD+1, PLAYERS_FILTER.length);
+
 ---
 
-<section class="my-40">
+<section class="my-20 md:my-20 mx-10 ">
   <h3 class="text-2xl md:text-4xl font-semibold text-center my-5">
     Elige tu jugador
   </h3>
-  <div class="flex flex-col justify-center items-center gap-8 mt-10">
-    <article class="player" id="camilo-varon">
+  <div class="flex flex-col md:flex-row justify-center items-center gap-8 mt-10">
+    <PlayerList players={PLAYERS_FILTER_1} />
+    <article class="player max-w-80 min-w-80 " id="camilo-varon">
       <header class="flex flex-col items-center justify-center">
         <img
           transition:name="player-image"
           src={`/img/jugadores/${PLAYERS_FILTER[0].id}.webp`  }
           alt="Fotografia del jugador"
-          class="player-photo w-96 h-auto"
+          class="player-photo w-96 max-h-fit"
           style="mask-image: linear-gradient(to bottom, black 80%, transparent 100%);"
         />
         <h4
           transition:name="player-title"
           class="player-title text-3xl text-green md:text-5xl text-center font-extrabold -mt-10 -rotate-6"
         >
-          {PLAYERS_FILTER[0].nombre} {PLAYERS_FILTER[0].apellido}
+          {PLAYERS_FILTER[0].nombres} {PLAYERS_FILTER[0].apellidos}
         </h4>
         <img
-          src={`/img/pais/${PLAYERS_FILTER[0].pais}.svg`}
-          alt={`Bandera de ${PLAYERS_FILTER[0].pais}`}
-          class="player-country w-14 mt-6"
+          src={`/img/pais/${PLAYERS_FILTER[0].nacionalidad}.svg`}
+          alt={`Bandera de ${PLAYERS_FILTER[0].nacionalidad}`}
+          class="player-nacionalidad w-14 mt-6"
         />
       </header>
 
@@ -39,30 +50,9 @@ const PLAYERS_FILTER = PLAYERS.filter((player) => player.equipo === equipo);
       </footer>
     </article>
 
-    <aside class="mt-5 flex flex-row flex-wrap justify-evenly gap-5">
-      {
-        PLAYERS_FILTER.map(({ id, nombre, apellido, edad, posicion, pais }) => (
-          <span
-            
-            class="player-link flex group relative justify-center items-center bg-gradient-to-b from-white/10 via-transparent to-transparent px-2 md:px-14"
-            data-id={id}
-            data-name={`${nombre} ${apellido}`}
-            data-age={edad}
-            data-country={pais}
-            data-position={posicion}
-          >
-            <img
-              
-              loading="lazy"
-              src={`/img/jugadores/${id}.webp`}
-              alt={`Foto en pequeño del jugador ${id}-small`}
-              class="player-image w-20 md:w-28 -mt-5 px-4 h-auto transition group-hover:scale-110"
-              style="mask-image: linear-gradient(to bottom, black 60%, transparent 90%);"
-            />
-          </span>
-        ))
-      }
-    </aside>
+    <PlayerList players={PLAYERS_FILTER_2} />
+    
+    <Carrousel players={PLAYERS_FILTER} />
   </div>
 </section>
 
@@ -80,12 +70,12 @@ const PLAYERS_FILTER = PLAYERS.filter((player) => player.equipo === equipo);
 
   playerLinks.forEach((playerLink) => {
     playerLink.addEventListener("click", (event) => {
-      const { id, country, name, age, position } = (event.currentTarget as HTMLElement).dataset;
-
+      const { id, country, name,  } = (event.currentTarget as HTMLElement).dataset;
+      console.log((event.currentTarget as HTMLElement).dataset);
+      
+      
       playerTitle.textContent = name;
       playerCountry.src = `/img/pais/${country}.svg`;
-      // playerPosition.textContent = `Posición: ${position}`;
-      // playerAge.textContent = `Edad: ${age}`;
       playerId.href = `/player/${id}`;
       playerPhoto.src = `/img/jugadores/${id}.webp`;
     });

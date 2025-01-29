@@ -24,6 +24,12 @@ export const EQUIPOS = [
         logo: 'zorros',
         manager:'Jose Perez',
     },
+    {
+        id: 'aguilas',
+        nombre: 'Aguilas',
+        logo: 'aguilas',
+        manager:'Juan Perez',
+    }
     
   
  

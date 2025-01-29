@@ -1,0 +1,40 @@
+---
+const API_URL = import.meta.env.API_URL;
+const response = await fetch(`${API_URL}/Clasificacion`).then((res) => res.json());
+
+const clasificacion = response.sort((a, b) => b.puntos - a.puntos) && response.sort((a, b) => b.jj - a.jj) ;
+
+
+
+---
+
+
+
+<div class=" bg-white/5 rounded-lg p-2 max-w-96">
+    <h1 class="text-lg my-4 text-center  text-green">
+        Clasificación
+    </h1>
+    <div class="grid grid-cols-6 font-roboto font-bold text-xs mb-4 text-slate-300">
+        
+        <span class="text-center">POS</span>
+        <span class="text-center">EQUIPO</span>
+        <span class="text-center ">JJ</span>
+        <span class="text-center">JG</span>
+        <span class="text-center ">JP</span>
+        <span class="text-center">PUNTOS</span>
+        
+    </div>
+    <div class="grid grid-cols-6 font-roboto capitalize text-sm gap-2">
+        {
+       clasificacion.map((equipo, index) => (            
+                <div class={` font-bold text-center ${index+1 == 1? "text-green":index+1 > 4? "text-red-300":"text-white"}`}>{index + 1}</div>
+                <div class={`text-green text-center font-bold hover:scale-110 ${index+1 > 4? "text-red-300":index+1 == 1? "text-green":"text-white"}`}>{equipo.equipo}</div>
+                <div class="text-center">{equipo.jj}</div>
+                <div class="text-center">{equipo.jg}</div>
+                <div class="text-red-500 text-center ">{equipo.jp}</div>
+                <div class="text-green text-center ">{equipo.puntos}</div>
+        ))
+        }
+        
+    </div>
+</div>

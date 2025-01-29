@@ -1,0 +1,29 @@
+---
+const players = Astro.props
+
+---
+
+<aside class="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-3">
+    {
+        players.players?.map((player ) => (
+        <span
+          
+          class="player-link flex flex-row sm:flex-wrap relative items-center bg-gradient-to-b from-white/10 via-transparent to-transparent"
+          data-id={player.id}
+          data-name={`${player.nombres} ${player.apellidos}`}
+          data-age={player.edad}
+          data-country={player.nacionalidad}
+          data-position={player.posicion}
+        >
+          <img
+            
+            loading="lazy"
+            src={`/img/jugadores/${player.id}.webp`}
+            alt={`Foto en pequeño del jugador ${player.id}-small`}
+            class="player-image sm:w-32 -mt-5 px-4 h-auto transition hover:scale-110"
+            style="mask-image: linear-gradient(to bottom, black 60%, transparent 90%);"
+          />
+        </span>
+      ))
+    }
+  </aside>

@@ -16,6 +16,7 @@ import Sponsors from "../../sections/Sponsors.astro";
                         class=" bg-gradient-to-b from-white/10 via-transparent to-transparent p-2"
                     >
                         <img
+                            transition:name={`logo-${id}`}
                             loading="lazy"
                             src={`/img/equipos/${logo}.webp`}
                             alt={`Logo del equipo ${nombre}`}

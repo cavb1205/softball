@@ -5,13 +5,14 @@ import SelectPlayer from "../../sections/SelectPlayer.astro";
 import { GET_PLAYERS } from "../../const/players";
 
 const PLAYERS = await GET_PLAYERS();
-
+const id = equipo
 ---
 
 <Layout title={`Softball-${equipo}`}>
   <main>
     <h1 class="text-6xl md:text-6xl text-center text-green">{equipo}</h1>
     <img
+      transition:name={`logo-${id}`}
       src={`/img/equipos/${equipo}.webp`}
       alt={`Foto del equipo ${equipo}`}
       class="w-40 h-auto rounded-full mx-auto my-5"

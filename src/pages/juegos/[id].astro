@@ -30,7 +30,7 @@ const { equipo1, equipo2, resultado } = juegoDetalle;
       <div class="flex flex-row justify-center items-center gap-6">
         <h2
           class="text-green text-center text-3xl md:text-6xl my-10 -rotate-3"
-          transition:name={`title-${equipo1}-${id}-1`}
+          transition:name={`title-list-${id}-${equipo1}-1`}
         >
           {equipo1}
         </h2>
@@ -39,7 +39,7 @@ const { equipo1, equipo2, resultado } = juegoDetalle;
         >
         <h2
           class="text-green text-center text-3xl md:text-6xl my-10 -rotate-3"
-          transition:name={`title-${equipo2}-${id}-2`}
+          transition:name={`title-list-${id}-${equipo2}-2`}
         >
           {equipo2}
         </h2>
@@ -51,7 +51,7 @@ const { equipo1, equipo2, resultado } = juegoDetalle;
       >
         <a href={`/equipos/${equipo1}`}>
           <img
-            transition:name={`img-${equipo1}`}
+            transition:name={`img-list-${id}-${equipo1}-1`}
             style="mask-image: linear-gradient(black 70%, transparent 100%);"
             src={`/img/equipos/${equipo1}.webp`}
             alt={`logo del equipo ${equipo1}`}
@@ -59,12 +59,12 @@ const { equipo1, equipo2, resultado } = juegoDetalle;
           />
         </a>
         <span
-          transition:name="vs-span"
+          transition:name={`vs-span-${id}`}
           class="text-4xl md:text-6xl text-green rotate-12">vs</span
         >
         <a href={`/equipos/${equipo2}`}>
           <img
-            transition:name={`img-${equipo2}`}
+            transition:name={`img-list-${id}-${equipo2}-2`}
             style="mask-image: linear-gradient(black 75%, transparent 100%);"
             src={`/img/equipos/${equipo2}.webp`}
             alt={`logo del equipo ${equipo2}`}

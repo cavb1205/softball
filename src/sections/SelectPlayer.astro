@@ -21,6 +21,7 @@ let PLAYERS_FILTER_2 = PLAYERS_FILTER.slice(MITAD+1, PLAYERS_FILTER.length);
   </h3>
   <div class="flex flex-col md:flex-row justify-center items-center gap-8 mt-10">
     <PlayerList players={PLAYERS_FILTER_1} />
+    
     <article class="player max-w-80 min-w-80 " id="camilo-varon">
       <header class="flex flex-col items-center justify-center">
         <img
@@ -39,7 +40,7 @@ let PLAYERS_FILTER_2 = PLAYERS_FILTER.slice(MITAD+1, PLAYERS_FILTER.length);
         <img
           src={`/img/pais/${PLAYERS_FILTER[0].nacionalidad}.svg`}
           alt={`Bandera de ${PLAYERS_FILTER[0].nacionalidad}`}
-          class="player-nacionalidad w-14 mt-6"
+          class="player-country w-14 mt-6"
         />
       </header>
 
@@ -61,8 +62,8 @@ let PLAYERS_FILTER_2 = PLAYERS_FILTER.slice(MITAD+1, PLAYERS_FILTER.length);
   const playerLinks = document.querySelectorAll(".player-link");
   const playerTitle = document.querySelector(".player-title");
   const playerCountry = document.querySelector(".player-country") as HTMLImageElement;
-  const playerPosition = document.querySelector(".player-position");
-  const playerAge = document.querySelector(".player-age");
+  
+  
   const playerId = document.querySelector(".player-id") as HTMLAnchorElement;
   const playerPhoto = document.querySelector(".player-photo") as HTMLImageElement;
 

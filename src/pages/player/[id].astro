@@ -6,7 +6,7 @@ import Sponsors from "../../sections/Sponsors.astro";
 const { id } = Astro.params;
 const PLAYERS = await GET_PLAYERS();
 const player = PLAYERS.find((player) => player.id === id);
-console.log(player);
+
 ---
 
 <Layout title={`Perfil de ${player.nombres}`}>

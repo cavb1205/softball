@@ -33,13 +33,13 @@ const TOTAL_JUEGOS = await GET_JUEGOS();
                         <div class="grid grid-cols-3 items-center ">
                           <div class="flex flex-row items-center justify-between gap-2 ">
                             <img
-                              transition:name={`img-${equipo1}-1`}
+                              transition:name={`img-list-${id}-${equipo1}-1`}
                               src={`/img/equipos/${equipo1}.webp`}
                               alt="escudo"
                               class="w-10 h-10 md:w-20 md:h-20 rounded-full"
                             />
                             <h2
-                              transition:name={`title-${equipo1}-1`}
+                              transition:name={`title-list-${id}-${equipo1}-1`}
                               class="text-xs md:text-lg"
                             >
                               {equipo1}
@@ -47,16 +47,16 @@ const TOTAL_JUEGOS = await GET_JUEGOS();
                               
                             </h2>
                           </div>
-                          <span transition:name="vs-span-title" class="text-green text-center">vs</span>
+                          <span transition:name={`vs-span-${id}`} class="text-green text-center">vs</span>
                           <div class="flex flex-row items-center justify-evenly gap-2">
                             <img
-                              transition:name={`img-${equipo2}-2`}
+                              transition:name={`img-list-${id}-${equipo2}-2`}
                               src={`/img/equipos/${equipo2}.webp`}
                               alt="escudo"
                               class="w-10 h-10 md:w-20 md:h-20 rounded-full"
                             />
                             <h2
-                              transition:name={`title-${equipo2}-2`}
+                              transition:name={`title-list-${id}-${equipo2}-2`}
                               class="text-xs md:text-lg"
                             >
                               {equipo2}

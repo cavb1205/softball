@@ -28,7 +28,7 @@ const clasificacion = response.sort((a, b) => b.puntos - a.puntos) && response.s
         {
        clasificacion.map((equipo, index) => (            
                 <div class={` font-bold text-center ${index+1 == 1? "text-green":index+1 > 4? "text-red-300":"text-white"}`}>{index + 1}</div>
-                <div class={`text-green text-center font-bold hover:scale-110 ${index+1 > 4? "text-red-300":index+1 == 1? "text-green":"text-white"}`}>{equipo.equipo}</div>
+                <div class={`text-green text-center font-bold hover:scale-110 ${index+1 > 4? "text-red-300":index+1 == 1? "text-green":"text-white"}`}><a href={`equipos/${equipo.equipo}`}>{equipo.equipo}</a></div>
                 <div class="text-center">{equipo.jj}</div>
                 <div class="text-center">{equipo.jg}</div>
                 <div class="text-red-500 text-center ">{equipo.jp}</div>

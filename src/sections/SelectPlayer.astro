@@ -20,7 +20,7 @@ let PLAYERS_FILTER_2 = PLAYERS_FILTER.slice(MITAD+1, PLAYERS_FILTER.length);
     Elige tu jugador
   </h3>
   <div class="flex flex-col md:flex-row justify-center items-center gap-8 mt-10">
-    <PlayerList players={PLAYERS_FILTER_1} />
+    <PlayerList players={PLAYERS_FILTER_1}  />
     
     <article class="player max-w-80 min-w-80 " id="camilo-varon">
       <header class="flex flex-col items-center justify-center">
@@ -51,13 +51,15 @@ let PLAYERS_FILTER_2 = PLAYERS_FILTER.slice(MITAD+1, PLAYERS_FILTER.length);
       </footer>
     </article>
 
-    <PlayerList players={PLAYERS_FILTER_2} />
+    <PlayerList players={PLAYERS_FILTER_2}  />
     
-    <Carrousel players={PLAYERS_FILTER} />
+    <Carrousel players={PLAYERS_FILTER}  />
   </div>
 </section>
 
+
 <script>
+  document.addEventListener("DOMContentLoaded", function () {
   // Selección de los elementos donde vamos a actualizar la información
   const playerLinks = document.querySelectorAll(".player-link");
   const playerTitle = document.querySelector(".player-title");
@@ -81,6 +83,6 @@ let PLAYERS_FILTER_2 = PLAYERS_FILTER.slice(MITAD+1, PLAYERS_FILTER.length);
       playerPhoto.src = `/img/jugadores/${id}.webp`;
     });
   });
-
+  })
  
 </script>

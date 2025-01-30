@@ -4,23 +4,29 @@ import Layout from '../layouts/Layout.astro';
 import Countdown from '../sections/Countdown.astro';
 import Hero from '../sections/Hero.astro';
 import Sponsors from '../sections/Sponsors.astro';
+import { GET_CAMPEONATOS } from '../const/campeonatos';
 
-
+const CAMPEONATOS = await GET_CAMPEONATOS();
+console.log(CAMPEONATOS);
+const year = CAMPEONATOS[CAMPEONATOS.length - 2].fecha_inicio.split("/")[2];
+const campeon = CAMPEONATOS[CAMPEONATOS.length - 2].campeon;
+const nombre = CAMPEONATOS[CAMPEONATOS.length - 2].nombre;
 ---
 
 <Layout title="SóftBol Calama">
 	<main>
 		<Hero />
-		
-		<div class="flex flex-col items-center mt-36">
-			<!-- <h2 class="text-2xl md:text-4xl">El campeonato inicia en</h2> -->
-			<!-- <Countdown primeraHora={1736690400}/> -->
-		</div>
-		<div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-10 mx-2">
+
+		 <div class="flex flex-col md:flex-row gap-8 justify-around items-center mt-48">
 			<TablePositions />
-			<!-- <div>
-				<h3 class="text-green text-3xl text-center">MVP</h3>
-			</div> -->
+			<div >
+				<h3 class="text-green text-2xl text-center">Campeón Torneo</h3>
+				<h4 class="text-white text-xl text-center my-2">{nombre}</h4>
+				<h5 class="text-white text-center my-2 text-sm">{year}</h5>
+				<a href={`/equipos/${campeon}`}>
+					<img src={`/img/equipos/${campeon}.webp`} alt="Campeón" class="w-40 h-40 mx-auto rounded-full my-5 hover:opacity-80 hover:scale-110"/>
+				</a>
+			</div>
 		</div>
 		<Sponsors />
 		

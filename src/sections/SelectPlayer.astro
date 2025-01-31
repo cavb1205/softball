@@ -1,88 +1,29 @@
 ---
-
 import Carrousel from "../components/Carrousel.astro";
 import PlayerList from "../components/PlayerList.astro";
 
-
-const {equipo, jugadores}=Astro.props
-
+const { equipo, jugadores } = Astro.props;
 
 const PLAYERS_FILTER = jugadores.filter((player) => player.equipo === equipo);
 
-let MITAD = Math.floor(PLAYERS_FILTER.length / 2);
-let PLAYERS_FILTER_1 = PLAYERS_FILTER.slice(0, MITAD+1);
-let PLAYERS_FILTER_2 = PLAYERS_FILTER.slice(MITAD+1, PLAYERS_FILTER.length);
-
+const MANAGER = PLAYERS_FILTER.find((player) => player.posicion === "manager");
 ---
 
-<section class="my-20 md:my-20 mx-10 ">
-  <h3 class="text-2xl md:text-4xl font-semibold text-center my-5">
-    Elige tu jugador
-  </h3>
-  <div class="flex flex-col md:flex-row justify-center items-center gap-8 mt-10">
-    <PlayerList players={PLAYERS_FILTER_1}  />
-    
-    <article class="player max-w-80 min-w-80 " id="camilo-varon">
-      <header class="flex flex-col items-center justify-center">
+<section class="my-20 md:my-20 mx-10">
+  
+  <div class="flex flex-col justify-center items-center gap-8 mt-10">
+    <a href={`/player/${MANAGER.id}`}>
+      <div class="flex flex-col justify-center items-center -mt-10">
         <img
-          transition:name="player-image"
-          src={`/img/jugadores/${PLAYERS_FILTER[0].id}.webp`  }
-          alt="Fotografia del jugador"
-          class="player-photo w-96 max-h-fit"
-          style="mask-image: linear-gradient(to bottom, black 80%, transparent 100%);"
+          transition:name={`logo-${equipo}`}
+          src={`/img/jugadores/${MANAGER.id}.webp`}
+          alt={`Foto del manager ${MANAGER.id}`}
+          class="w-40 h-auto rounded-full mx-auto hover:scale-110 hover:opacity-70"
         />
-        <h4
-          transition:name="player-title"
-          class="player-title text-3xl text-green md:text-5xl text-center font-extrabold -mt-10 -rotate-6"
-        >
-          {PLAYERS_FILTER[0].nombres} {PLAYERS_FILTER[0].apellidos}
-        </h4>
-        <img
-          src={`/img/pais/${PLAYERS_FILTER[0].nacionalidad}.svg`}
-          alt={`Bandera de ${PLAYERS_FILTER[0].nacionalidad}`}
-          class="player-country w-14 mt-6"
-        />
-      </header>
-
-      <footer>
-        <div class="flex flex-row justify-center items-center gap-8 mt-4">
-          <a href={`/player/${PLAYERS_FILTER[0].id}`} class="player-id text-sm hover:scale-110 hover:text-green">Ver Perfil</a>
-        </div>
-      </footer>
-    </article>
-
-    <PlayerList players={PLAYERS_FILTER_2}  />
-    
-    <Carrousel players={PLAYERS_FILTER}  />
+        <span>{MANAGER.nombres} {MANAGER.apellidos}</span>
+        <span class="text-green text-sm">manager</span>
+      </div>
+    </a>
+    <PlayerList players={PLAYERS_FILTER} />
   </div>
 </section>
-
-
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-  // Selección de los elementos donde vamos a actualizar la información
-  const playerLinks = document.querySelectorAll(".player-link");
-  const playerTitle = document.querySelector(".player-title");
-  const playerCountry = document.querySelector(".player-country") as HTMLImageElement;
-  
-  
-  const playerId = document.querySelector(".player-id") as HTMLAnchorElement;
-  const playerPhoto = document.querySelector(".player-photo") as HTMLImageElement;
-
-  // Función que se encarga de actualizar la información del jugador
-
-  playerLinks.forEach((playerLink) => {
-    playerLink.addEventListener("click", (event) => {
-      const { id, country, name,  } = (event.currentTarget as HTMLElement).dataset;
-      console.log((event.currentTarget as HTMLElement).dataset);
-      
-      
-      playerTitle.textContent = name;
-      playerCountry.src = `/img/pais/${country}.svg`;
-      playerId.href = `/player/${id}`;
-      playerPhoto.src = `/img/jugadores/${id}.webp`;
-    });
-  });
-  })
- 
-</script>

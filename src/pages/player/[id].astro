@@ -6,7 +6,6 @@ import Sponsors from "../../sections/Sponsors.astro";
 const { id } = Astro.params;
 const PLAYERS = await GET_PLAYERS();
 const player = PLAYERS.find((player) => player.id === id);
-
 ---
 
 <Layout title={`Perfil de ${player.nombres}`}>
@@ -16,10 +15,11 @@ const player = PLAYERS.find((player) => player.id === id);
     class="hover:bg-slate-200/10 px-5 py-8 text-md"><span>Volver</span></a
   >
 
-  <div class="flex flex-col md:flex-row justify-center items-center">
+  <div class="flex flex-col md:flex-row justify-center items-center mx-20">
     <div class="flex flex-col my-5">
       <a href={`/equipos/${player.equipo}`}>
         <img
+          transition:name={`logo-${player.equipo}`}
           src={`/img/equipos/${player.equipo}.webp`}
           alt={`Foto del equipo ${player.equipo}`}
           class="w-28 h-auto rounded-full hover:scale-110 hover:opacity-75"
@@ -28,14 +28,14 @@ const player = PLAYERS.find((player) => player.id === id);
     </div>
     <div class="flex flex-col items-center justify-center">
       <h1
-        class="text-4xl md:text-6xl text-green -rotate-5 mb-10"
+        class="text-4xl md:text-6xl text-green -rotate-5 mb-10 text-center"
         transition:name="player-title"
       >
         {player.nombres}
         {player.apellidos}
       </h1>
       <img
-        transition:name="player-image"
+        transition:name={`player-${player.id}`}
         src={`/img/jugadores/${player.id}.webp`}
         alt={`Foto de ${player.nombres} ${player.apellidos}`}
         class="w-96 h-auto"

@@ -1,4 +1,6 @@
 ---
+import { GET_CAMPEONATOS } from "../const/campeonatos";
+
 const {equipo} = Astro.params;
 const API_URL = import.meta.env.API_URL;
 const response = await fetch(`${API_URL}/Clasificacion`).then((res) => res.json());
@@ -7,19 +9,12 @@ const equipo_stats = equipo
 const estadisticas_equipo = response.find(equipo => equipo.equipo == equipo_stats)
 const clasificacion = response.sort((a, b) => b.puntos - a.puntos) && response.sort((a, b) => b.jj - a.jj) ;
 const posicion = clasificacion.findIndex(equipo => equipo.equipo == equipo_stats) + 1
-console.log(clasificacion)
 
 
-const CAMPEONATOS = [
-    {
-        nombre:'Campeonato 1',
-        fecha:'2021-10-10',
-    },
-    {
-        nombre:'Campeonato 2',
-        fecha:'2021-10-10',
-    }
-]
+const CAMPEONATOS = await GET_CAMPEONATOS()
+const campeonatos_ganados = CAMPEONATOS.filter(campeonato => campeonato.campeon == equipo_stats)
+
+console.log(campeonatos_ganados)
 ---
 
 
@@ -33,32 +28,32 @@ const CAMPEONATOS = [
         <div class="grid grid-cols-2 gap-2 ">
             <div class="flex flex-col  bg-slate-50/5 rounded-sm p-4">
                 <span class="text-center font-sans">Juegos Ganados</span>
-                <span class="text-center text-lg">{estadisticas_equipo.jg}</span>
+                <span class="text-center text-lg text-green">{estadisticas_equipo.jg}</span>
             </div>
             <div class="flex flex-col  bg-slate-50/5 rounded-sm p-4">
                 <span class="text-center font-sans">Juegos Jugados</span>
-                <span class="text-center text-lg">{estadisticas_equipo.jj}</span>
+                <span class="text-center text-lg text-green">{estadisticas_equipo.jj}</span>
             </div>
             <div class="flex flex-col  bg-slate-50/5 rounded-sm p-4">
                 <span class="text-center font-sans">Juegos Perdidos</span>
-                <span class="text-center text-lg">{estadisticas_equipo.jp}</span>
+                <span class="text-center text-lg text-green">{estadisticas_equipo.jp}</span>
             </div>
             <div class="flex flex-col  bg-slate-50/5 rounded-sm p-4">
                 <span class="text-center font-sans">Puntos</span>
-                <span class="text-center text-lg">{estadisticas_equipo.puntos}</span>
+                <span class="text-center text-lg text-green">{estadisticas_equipo.puntos}</span>
             </div>
 
         </div>
     </div>
     <div class="my-10">
         <h4 class="text-center text-green mb-2">Campeonatos Ganados</h4>
-        <span class="text-center text-4xl block my-5 text-green">{CAMPEONATOS.length}</span>
+        <span class="text-center text-4xl block my-5 text-green">{campeonatos_ganados.length}</span>
         <ul class="grid grid-cols-1 gap-5">
-            {CAMPEONATOS.map((campeonato, index) => (
+            {campeonatos_ganados.map((campeonato, index) => (
                 <li class="flex flex-row justify-evenly items-center">
                     <span class="text-xs">{index + 1}</span>
                     <span class="text-xs">{campeonato.nombre}</span>
-                    <span class="text-xs">{campeonato.fecha}</span>
+                    <span class="text-xs">{campeonato.fecha_inicio}</span>
                 </li>
             ))}
 

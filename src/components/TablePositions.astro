@@ -2,7 +2,7 @@
 const API_URL = import.meta.env.API_URL;
 const response = await fetch(`${API_URL}/Clasificacion`).then((res) => res.json());
 
-const clasificacion = response.sort((a, b) => b.puntos - a.puntos) && response.sort((a, b) => b.jj - a.jj) ;
+const clasificacion = response.sort((a, b) => b.puntos - a.puntos) && response.sort((a, b) => b.jg - a.jg) ;
 
 
 

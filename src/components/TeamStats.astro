@@ -7,14 +7,14 @@ const response = await fetch(`${API_URL}/Clasificacion`).then((res) => res.json(
 
 const equipo_stats = equipo
 const estadisticas_equipo = response.find(equipo => equipo.equipo == equipo_stats)
-const clasificacion = response.sort((a, b) => b.puntos - a.puntos) && response.sort((a, b) => b.jj - a.jj) ;
+const clasificacion = response.sort((a, b) => b.puntos - a.puntos) && response.sort((a, b) => b.jg - a.jg) ;
 const posicion = clasificacion.findIndex(equipo => equipo.equipo == equipo_stats) + 1
 
 
 const CAMPEONATOS = await GET_CAMPEONATOS()
 const campeonatos_ganados = CAMPEONATOS.filter(campeonato => campeonato.campeon == equipo_stats)
 
-console.log(campeonatos_ganados)
+
 ---
 
 
